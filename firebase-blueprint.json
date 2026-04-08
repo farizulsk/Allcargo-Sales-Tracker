@@ -1,0 +1,68 @@
+{
+  "entities": {
+    "franchise": {
+      "title": "Franchise",
+      "description": "A sales unit or franchise location.",
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "Name of the franchise"
+        },
+        "target": {
+          "type": "number",
+          "description": "Monthly sales target"
+        },
+        "achievement": {
+          "type": "number",
+          "description": "Current month achievement"
+        },
+        "yesterdaySale": {
+          "type": "number",
+          "description": "Sales from the previous day"
+        },
+        "ownerUid": {
+          "type": "string",
+          "description": "UID of the user who owns this franchise record"
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Timestamp when the record was created"
+        },
+        "updatedAt": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Timestamp when the record was last updated"
+        }
+      },
+      "required": ["name", "target", "achievement", "yesterdaySale", "ownerUid"]
+    },
+    "user": {
+      "title": "User",
+      "description": "User profile data.",
+      "type": "object",
+      "properties": {
+        "email": {
+          "type": "string",
+          "format": "email"
+        },
+        "role": {
+          "type": "string",
+          "enum": ["admin", "user"]
+        }
+      },
+      "required": ["email", "role"]
+    }
+  },
+  "firestore": {
+    "/franchises/{franchiseId}": {
+      "schema": "franchise",
+      "description": "Collection of franchises"
+    },
+    "/users/{userId}": {
+      "schema": "user",
+      "description": "User profiles"
+    }
+  }
+}
